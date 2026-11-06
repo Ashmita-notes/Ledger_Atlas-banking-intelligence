@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashmita Maharana — Data & AI Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e0d0b;
+    --panel:#17140f;
+    --panel-2:#1e1a13;
+    --bronze:#b98d4f;
+    --bronze-soft:#c9a15f;
+    --gold-hair:#e9c98a;
+    --cream:#f2ecdf;
+    --taupe:#9a8c76;
+    --taupe-dim:#5c5445;
+    --line:rgba(233,201,138,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(ellipse 1200px 700px at 15% -10%, rgba(185,141,79,0.16), transparent 60%),
+      radial-gradient(ellipse 900px 600px at 100% 10%, rgba(201,161,95,0.08), transparent 55%),
+      var(--ink);
+    color:var(--cream);
+    font-family:'Sora', sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--bronze); color:var(--ink); }
+
+  /* subtle noise/texture */
+  body::before{
+    content:"";
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(233,201,138,0.02) 0px, rgba(233,201,138,0.02) 1px, transparent 1px, transparent 90px),
+      repeating-linear-gradient(25deg, rgba(233,201,138,0.015) 0px, rgba(233,201,138,0.015) 1px, transparent 1px, transparent 90px);
+  }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 40px; position:relative; z-index:1;}
+
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(14,13,11,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  header.nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:74px;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-weight:500; font-size:19px;
+    letter-spacing:0.02em; color:var(--cream);
+  }
+  .brand span{ color:var(--bronze-soft); }
+  nav.links{ display:flex; gap:34px; }
+  nav.links a{
+    color:var(--taupe); text-decoration:none; font-size:13px;
+    letter-spacing:0.12em; text-transform:uppercase; font-weight:500;
+    transition:color .25s ease;
+    position:relative;
+  }
+  nav.links a:hover, nav.links a:focus-visible{ color:var(--gold-hair); }
+  nav.links a::after{
+    content:""; position:absolute; left:0; bottom:-6px; width:0; height:1px;
+    background:var(--bronze-soft); transition:width .3s ease;
+  }
+  nav.links a:hover::after{ width:100%; }
+
+  /* HERO */
+  .hero{
+    padding:110px 0 90px;
+    position:relative;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--bronze-soft);
+    display:flex; align-items:center; gap:12px; margin-bottom:26px;
+  }
+  .eyebrow::before{ content:""; width:34px; height:1px; background:var(--bronze-soft); display:inline-block; }
+
+  h1.title{
+    font-family:'Fraunces', serif; font-weight:500; font-size:clamp(40px, 5.2vw, 68px);
+    line-height:1.04; letter-spacing:-0.01em; color:var(--cream);
+  }
+  h1.title em{
+    font-style:italic; font-weight:400; color:var(--bronze-soft);
+  }
+  .lede{
+    margin-top:24px; max-width:520px; color:var(--taupe); font-size:16.5px; line-height:1.75;
+  }
+  .cta-row{ margin-top:38px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 26px; border-radius:2px; font-size:13px; letter-spacing:0.08em;
+    text-transform:uppercase; font-weight:600; text-decoration:none; cursor:pointer;
+    border:1px solid transparent; transition:all .25s ease;
+  }
+  .btn.solid{ background:var(--bronze-soft); color:var(--ink); }
+  .btn.solid:hover{ background:var(--gold-hair); transform:translateY(-1px); }
+  .btn.ghost{ border-color:var(--line); color:var(--cream); background:transparent; }
+  .btn.ghost:hover{ border-color:var(--bronze-soft); color:var(--gold-hair); }
+
+  /* signature graphic: animated "insight line" */
+  .signature{
+    position:relative; aspect-ratio:1/1.05;
+    border:1px solid var(--line); border-radius:4px;
+    background:linear-gradient(160deg, var(--panel), var(--panel-2));
+    display:flex; align-items:center; justify-content:center; padding:26px;
+  }
+  .signature svg{ width:100%; height:100%; }
+  .sig-caption{
+    position:absolute; bottom:16px; left:20px; right:20px;
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:0.1em;
+    color:var(--taupe-dim); text-transform:uppercase; display:flex; justify-content:space-between;
+  }
+
+  .path-draw{
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 2.6s cubic-bezier(.65,0,.35,1) forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .dot-pulse{ animation:pulse 2.4s ease-in-out infinite; transform-origin:center; }
+  @keyframes pulse{ 0%,100%{ opacity:0.55; r:3; } 50%{ opacity:1; r:5; } }
+
+  section{ padding:88px 0; border-top:1px solid var(--line); position:relative; z-index:1;}
+  .kicker{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--bronze-soft); margin-bottom:14px;
+  }
+  h2.h{
+    font-family:'Fraunces', serif; font-weight:500; font-size:clamp(28px,3.4vw,40px);
+    letter-spacing:-0.01em; margin-bottom:38px; max-width:640px;
+  }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:start; }
+  .about-grid p{ color:var(--taupe); line-height:1.85; font-size:16px; }
+  .about-grid p + p{ margin-top:16px; }
+  .stat-cards{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .stat-cards .cell{ background:var(--panel); padding:26px 22px; }
+  .stat-num{ font-family:'Fraunces', serif; font-size:32px; color:var(--gold-hair); font-weight:500; }
+  .stat-label{ margin-top:8px; font-size:12px; letter-spacing:0.06em; color:var(--taupe); text-transform:uppercase; }
+
+  /* SKILLS */
+  .skill-cloud{ display:flex; flex-wrap:wrap; gap:10px; }
+  .skill-tag{
+    border:1px solid var(--line); padding:10px 18px; border-radius:2px;
+    font-size:13.5px; color:var(--cream); background:var(--panel);
+    transition:all .25s ease; cursor:default;
+  }
+  .skill-tag:hover{ border-color:var(--bronze-soft); color:var(--gold-hair); background:var(--panel-2); transform:translateY(-2px); }
+
+  /* PROJECTS */
+  .projects{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .proj-card{
+    border:1px solid var(--line); background:linear-gradient(180deg, var(--panel), var(--panel-2));
+    padding:34px; border-radius:3px; position:relative; overflow:hidden;
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .proj-card:hover{ border-color:var(--bronze-soft); transform:translateY(-4px); }
+  .proj-index{ font-family:'JetBrains Mono', monospace; color:var(--taupe-dim); font-size:12px; letter-spacing:0.15em; }
+  .proj-card h3{
+    font-family:'Fraunces', serif; font-weight:500; font-size:23px; margin:16px 0 12px; color:var(--cream);
+  }
+  .proj-card p{ color:var(--taupe); font-size:14.5px; line-height:1.7; }
+  .proj-tags{ margin-top:20px; display:flex; gap:8px; flex-wrap:wrap; }
+  .proj-tags span{
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bronze-soft);
+    border:1px solid var(--line); padding:5px 10px;
+  }
+
+  /* EDUCATION TIMELINE */
+  .timeline{ position:relative; padding-left:34px; }
+  .timeline::before{
+    content:""; position:absolute; left:6px; top:6px; bottom:6px; width:1px;
+    background:linear-gradient(var(--bronze-soft), var(--line));
+  }
+  .t-item{ position:relative; padding-bottom:44px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:""; position:absolute; left:-34px; top:4px; width:13px; height:13px;
+    border-radius:50%; background:var(--ink); border:2px solid var(--bronze-soft);
+  }
+  .t-year{ font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--bronze-soft); letter-spacing:0.08em; }
+  .t-item h4{ font-family:'Fraunces', serif; font-weight:500; font-size:20px; margin:8px 0 6px; }
+  .t-item p{ color:var(--taupe); font-size:14.5px; }
+  .t-meta{ margin-top:8px; display:flex; gap:18px; }
+  .t-meta span{ font-size:12px; color:var(--gold-hair); font-family:'JetBrains Mono', monospace; }
+
+  /* CONTACT */
+  .contact-panel{
+    border:1px solid var(--line); background:linear-gradient(150deg, var(--panel), var(--panel-2));
+    padding:64px 56px; text-align:center; border-radius:4px; position:relative; overflow:hidden;
+  }
+  .contact-panel::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(201,161,95,0.14), transparent 60%);
+  }
+  .contact-panel h2{ position:relative; }
+  .contact-links{ position:relative; margin-top:30px; display:flex; gap:28px; justify-content:center; flex-wrap:wrap; }
+  .contact-links a{
+    color:var(--cream); text-decoration:none; font-size:15px; border-bottom:1px solid var(--line);
+    padding-bottom:4px; transition:all .25s ease; font-family:'JetBrains Mono', monospace;
+  }
+  .contact-links a:hover{ color:var(--gold-hair); border-color:var(--bronze-soft); }
+
+  footer{ padding:36px 0 50px; text-align:center; color:var(--taupe-dim); font-size:12.5px; letter-spacing:0.05em; }
+  footer a{ color:var(--taupe-dim); }
+
+  @media (max-width: 860px){
+    .wrap{ padding:0 22px; }
+    header.nav nav.links{ display:none; }
+    .hero{ grid-template-columns:1fr; padding-top:60px; }
+    .about-grid{ grid-template-columns:1fr; gap:34px; }
+    .projects{ grid-template-columns:1fr; }
+    .contact-panel{ padding:44px 26px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .path-draw{ animation:none; stroke-dashoffset:0; }
+    .dot-pulse{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand">Ashmita<span>.</span>Maharana</div>
+    <nav class="links">
+      <a href="#about">Profile</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border:none; padding-top:100px;">
+    <div>
+      <div class="eyebrow">Data &amp; AI · Computer Science Engineering</div>
+      <h1 class="title">Turning raw data<br>into <em>decisions</em><br>worth making.</h1>
+      <p class="lede">B.Tech Computer Science student at NIST, Berhampur, building a track record in exploratory data analysis, machine learning and predictive modelling — with real-world work spanning telecom analytics and South East Asian tariff research.</p>
+      <div class="cta-row">
+        <a href="#projects" class="btn solid">View Projects</a>
+        <a href="mailto:mashmita05@gmail.com" class="btn ghost">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="signature">
+      <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- grid -->
+        <g stroke="rgba(233,201,138,0.10)" stroke-width="1">
+          <line x1="20" y1="60" x2="300" y2="60"/>
+          <line x1="20" y1="120" x2="300" y2="120"/>
+          <line x1="20" y1="180" x2="300" y2="180"/>
+          <line x1="20" y1="240" x2="300" y2="240"/>
+        </g>
+        <!-- rising insight line -->
+        <path class="path-draw" d="M20 250 L70 220 L110 235 L150 160 L190 175 L230 95 L300 55"
+              stroke="#c9a15f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- data points -->
+        <circle class="dot-pulse" cx="70" cy="220" r="3" fill="#e9c98a"/>
+        <circle class="dot-pulse" cx="150" cy="160" r="3" fill="#e9c98a" style="animation-delay:.3s"/>
+        <circle class="dot-pulse" cx="230" cy="95" r="3" fill="#e9c98a" style="animation-delay:.6s"/>
+        <circle class="dot-pulse" cx="300" cy="55" r="4" fill="#f2ecdf" style="animation-delay:.9s"/>
+      </svg>
+      <div class="sig-caption">
+        <span>signal / detected</span>
+        <span>n = 2</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="kicker">01 — Profile</div>
+    <h2 class="h">Proactive, results-oriented, and fluent in the language of data.</h2>
+    <div class="about-grid">
+      <div>
+        <p>A Computer Science Engineering student with a genuine passion for transforming complex datasets into actionable business strategy — not just running the numbers, but shaping what a business does next.</p>
+        <p>With hands-on experience analysing market leaders like Singtel and tariff structures across South East Asia, the focus is on leveraging AI, machine learning, and predictive modelling to drive impactful decisions in fast-paced, high-stakes environments.</p>
+      </div>
+      <div class="stat-cards">
+        <div class="cell"><div class="stat-num">8.14</div><div class="stat-label">CGPA · Year 2</div></div>
+        <div class="cell"><div class="stat-num">8.07</div><div class="stat-label">CGPA · Year 1</div></div>
+        <div class="cell"><div class="stat-num">2028</div><div class="stat-label">Expected Graduation</div></div>
+        <div class="cell"><div class="stat-num">2</div><div class="stat-label">Applied Data Projects</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="kicker">02 — Capabilities</div>
+    <h2 class="h">A toolkit built for analysis, modelling, and clear communication.</h2>
+    <div class="skill-cloud">
+      <span class="skill-tag">Python Programming</span>
+      <span class="skill-tag">Artificial Intelligence</span>
+      <span class="skill-tag">Machine Learning</span>
+      <span class="skill-tag">Deep Learning</span>
+      <span class="skill-tag">Data Cleaning</span>
+      <span class="skill-tag">Data Visualization</span>
+      <span class="skill-tag">Tableau</span>
+      <span class="skill-tag">SQL &amp; Database Management</span>
+      <span class="skill-tag">Statistical Analysis</span>
+      <span class="skill-tag">Insight Generation</span>
+      <span class="skill-tag">Critical Thinking</span>
+      <span class="skill-tag">Business Analysis</span>
+      <span class="skill-tag">Professional Communication</span>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="kicker">03 — Projects</div>
+    <h2 class="h">Applied analysis, from telecom markets to regional trade policy.</h2>
+    <div class="projects">
+      <div class="proj-card">
+        <div class="proj-index">Project / 01</div>
+        <h3>Singtel — Exploratory Data Analysis</h3>
+        <p>Conducted end-to-end exploratory data analysis on Singtel's business data, uncovering patterns and trends to support data-informed strategic decisions for a leading telecom market player.</p>
+        <div class="proj-tags"><span>EDA</span><span>Data Cleaning</span><span>Python</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-index">Project / 02</div>
+        <h3>South East Asia Tariff Rate Analysis</h3>
+        <p>Analysed tariff rate structures across South East Asian countries, translating regional trade data into clear, comparative insights relevant to financial and policy decision-making.</p>
+        <div class="proj-tags"><span>Statistical Analysis</span><span>SQL</span><span>Insight Generation</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="kicker">04 — Education</div>
+    <h2 class="h">Academic path.</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-year">2024 — 2028</div>
+        <h4>B.Tech, Computer Science &amp; Engineering</h4>
+        <p>National Institute of Science and Technology, Berhampur, Odisha</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2024</div>
+        <h4>Class 12th, Science Stream</h4>
+        <p>Delhi Public School, Raighar, Chattisgarh</p>
+        <div class="t-meta"><span>70%</span></div>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2022</div>
+        <h4>Class 10th</h4>
+        <p>Delhi Public School, Raighar, Chattisgarh</p>
+        <div class="t-meta"><span>85%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="kicker" style="text-align:center;">05 — Contact</div>
+    <div class="contact-panel">
+      <h2 class="h" style="margin:0 auto; text-align:center;">Let's talk about your next data problem.</h2>
+      <p style="color:var(--taupe); max-width:480px; margin:18px auto 0; position:relative;">Open to opportunities in data analysis, machine learning, and business intelligence.</p>
+      <div class="contact-links">
+        <a href="mailto:mashmita05@gmail.com">mashmita05@gmail.com</a>
+        <a href="tel:+917054501988">+91 70545-01988</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Ashmita Maharana — Built for portfolio use
+</footer>
+
+</body>
+</html>
